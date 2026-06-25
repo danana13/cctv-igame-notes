@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>流动中的体验 · ayx</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f0f9f7;  /* 极浅蓝绿 */
+      color: #1e2b2a;
+      line-height: 1.7;
+      padding: 1.5rem 1rem 3rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 760px;
+      width: 100%;
+    }
+
+    /* 卡片网格风格 ———— 灵活网格，蓝绿点缀 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0 2.2rem;
+    }
+
+    .card-item {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      border-radius: 24px;
+      padding: 1.6rem 1.2rem;
+      box-shadow: 0 8px 18px rgba(0, 90, 80, 0.06), 0 0 0 1px rgba(20, 120, 110, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      text-align: center;
+    }
+
+    .card-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(12, 105, 95, 0.08), 0 0 0 1px #2b9b8b30;
+    }
+
+    .card-item h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+      color: #0b6b5f;
+    }
+
+    .card-item p {
+      font-size: 0.9rem;
+      color: #355956;
+      margin: 0;
+    }
+
+    /* 蓝绿色点缀 */
+    .accent-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #2c9f8e;
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+
+    .badge-soft {
+      background: #d5f0eb;
+      color: #1b6d62;
+      padding: 0.1rem 0.7rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+
+    /* 标题、段落 */
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #083c36;
+      line-height: 1.3;
+      margin: 0.6rem 0 0.8rem;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: #3e6c65;
+      border-left: 4px solid #2c9f8e;
+      padding-left: 1rem;
+      margin: 1.2rem 0 1.8rem;
+      font-weight: 380;
+    }
+
+    .intro-word {
+      font-size: 1.3rem;
+      color: #1b5a50;
+      margin-top: 0.5rem;
+    }
+
+    .story-paragraph {
+      margin: 1.8rem 0;
+      font-size: 1rem;
+    }
+
+    .story-paragraph p {
+      margin-bottom: 1.2rem;
+    }
+
+    .highlight-link {
+      color: #0a6b5d;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid #55b3a2;
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .highlight-link:hover {
+      color: #043d34;
+      border-bottom-color: #043d34;
+    }
+
+    .scene-box {
+      background: #e7f6f2;
+      border-radius: 28px;
+      padding: 1.6rem 1.5rem;
+      margin: 2rem 0;
+      box-shadow: inset 0 1px 4px rgba(40, 130, 115, 0.04);
+    }
+
+    .scene-box h2 {
+      font-size: 1.25rem;
+      font-weight: 450;
+      color: #0b5e53;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .scene-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .faq-mini {
+      background: transparent;
+      border-top: 1px solid #b8dad3;
+      padding: 1.2rem 0 0.2rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-mini summary {
+      font-weight: 450;
+      cursor: pointer;
+      color: #165b4f;
+      padding: 0.3rem 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .faq-mini summary::before {
+      content: "▹";
+      color: #2c9f8e;
+      margin-right: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .faq-mini details[open] summary::before {
+      content: "▿";
+    }
+
+    .faq-mini .answer {
+      padding-left: 1.8rem;
+      color: #2a5550;
+      font-size: 0.92rem;
+      margin: 0.2rem 0 0.8rem;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      font-size: 0.85rem;
+      color: #507773;
+      text-align: center;
+      border-top: 1px solid #c3dfd8;
+      padding-top: 1.8rem;
+    }
+
+    /* 移动端友好 */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.75rem; }
+      .card-grid { gap: 0.9rem; }
+      .card-item { padding: 1.2rem 0.8rem; }
+      body { padding: 1rem 0.7rem 2.5rem; }
+    }
+
+    @media (min-width: 600px) {
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* 温和的装饰 */
+    .wave-line {
+      background: linear-gradient(90deg, #2c9f8e20, #2c9f8e40, #2c9f8e20);
+      height: 2px;
+      width: 100%;
+      margin: 1.2rem 0;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 开场短句 -->
+  <div class="intro-word">
+    <span class="accent-dot"></span> 有时，一个名字就是一段叙事的起点。
+  </div>
+
+  <h1>从 <span style="color:#1f7a6b;">ayx</span> 开始的故事</h1>
+
+  <!-- 承接段落 -->
+  <div class="story-paragraph">
+    <p>
+      很多年前，数字世界的边界还没有今天这样模糊。那时人们通过一个简洁的标识找到属于自己的频道——<a href="https://cctv-igame.com.cn" class="highlight-link">ayx</a> 便是其中一道安静而笃定的路径。它不喧哗，也不刻意标榜，只是恰到好处地连接着内容、互动与日常。
+    </p>
+    <p>
+      今天说起“ayx”，更像是在谈论一种氛围：轻松、可靠、带着一点点探索的兴致。它不是一个需要被反复强调的入口，而是一个你可以随时推开门、自然融入的场景。
+    </p>
+  </div>
+
+  <div class="wave-line"></div>
+
+  <!-- 特点列表 (卡片网格) -->
+  <div class="card-grid">
+    <div class="card-item">
+      <span class="badge-soft">轻快</span>
+      <h3>低负担访问</h3>
+      <p>页面结构干净，加载流畅，不堆积冗余模块。</p>
+    </div>
+    <div class="card-item">
+      <span class="badge-soft">包容</span>
+      <h3>多端适应</h3>
+      <p>从手机到桌面，卡片布局自动调整，阅读体验一致。</p>
+    </div>
+    <div class="card-item">
+      <span class="badge-soft">温和</span>
+      <h3>无扰界面</h3>
+      <p>没有弹窗与强引导，内容自然呈现，由你决定节奏。</p>
+    </div>
+  </div>
+
+  <!-- 场景片段 -->
+  <div class="scene-box">
+    <h2><span class="accent-dot" style="margin-right:0.5rem;"></span> 一个普通午后的片段</h2>
+    <p>
+      你打开浏览器，输入熟悉的地址。页面像老朋友一样展开——没有闪烁的广告，没有催促你注册的横幅。<a href="https://cctv-igame.com.cn" class="highlight-link">ayx</a> 就在那里，保持着一贯的简洁。你滑动屏幕，找到感兴趣的内容，点开，然后沉浸其中。
+    </p>
+    <p>
+      这是一种不费力的日常。技术本该如此：退到幕后，让体验本身成为主角。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 (温和) -->
+  <div class="faq-mini">
+    <details>
+      <summary>“ayx” 有什么特别的含义吗？</summary>
+      <div class="answer">它更像一个标识，没有固定的定义。你可以理解为“一种轻盈的索引”，或者只是四个字母的组合——重要的是它指向的体验，而非解释。</div>
+    </details>
+    <details>
+      <summary>哪些内容可以在其中找到？</summary>
+      <div class="answer">以信息、互动和轻度娱乐为主，具体内容随板块调整。保持好奇，慢慢浏览就好。</div>
+    </details>
+    <details>
+      <summary>是否需要注册或下载？</summary>
+      <div class="answer">完全不需要。直接通过浏览器访问即可，没有额外门槛。</div>
+    </details>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div style="margin: 2.5rem 0 1.2rem; background: #f2fbf9; border-radius: 40px; padding: 1.6rem 1.4rem;">
+    <p style="font-size: 1rem; line-height: 1.6;">
+      结尾不需要铿锵的总结。或许只是这样：下一次当你想起一个安静、不打扰的去处，<a href="https://cctv-igame.com.cn" class="highlight-link">ayx</a> 依然会在那里，用同样的节奏等你。
+    </p>
+    <p style="margin-top: 0.6rem; color: #336b62; font-size: 0.9rem;">
+      希望这段叙述，让你感受到一种朴素的连接。
+    </p>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-note">
+    <span>✦</span> 基于真实域名的叙述 · 不夸大，不诱导 <span>✦</span>
+  </div>
+
+</div>
+</body>
+</html>
