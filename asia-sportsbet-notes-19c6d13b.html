@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>再次遇见 · 买球站 | 持续关注者说明页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce9c8 0%, #fbd7a0 40%, #f5c37a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem 1.25rem;
+        }
+
+        .container {
+            max-width: 780px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 48px 48px 36px 36px;
+            padding: 2.8rem 2.2rem 3rem;
+            box-shadow: 0 16px 40px -12px rgba(170, 100, 20, 0.25);
+            transition: box-shadow 0.2s ease;
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 600;
+            color: #3b2a1a;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+            border-left: 6px solid #e58c3b;
+            padding-left: 1rem;
+        }
+
+        .subhead {
+            color: #7a5f3f;
+            font-size: 1rem;
+            margin-top: 0.1rem;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            opacity: 0.85;
+            border-bottom: 1px dashed #e6d3bb;
+            padding-bottom: 0.75rem;
+        }
+
+        .intro {
+            font-size: 1.08rem;
+            line-height: 1.7;
+            color: #2b1f13;
+            margin-bottom: 2.2rem;
+            padding: 1.2rem 1.6rem;
+            background: #fcf7ef;
+            border-radius: 28px;
+            border-left: 4px solid #e5b27c;
+        }
+
+        .article-body p {
+            margin-bottom: 1.6rem;
+            line-height: 1.75;
+            color: #2d2419;
+            font-size: 1.02rem;
+        }
+
+        .highlight-quote {
+            background: #faf1e4;
+            border-radius: 24px;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0 2.2rem;
+            border-left: 8px solid #d6954b;
+            font-style: normal;
+            color: #3f2f1b;
+            box-shadow: inset 0 1px 4px rgba(212, 157, 72, 0.1);
+        }
+
+        .highlight-quote strong {
+            color: #a05f2a;
+            font-weight: 600;
+        }
+
+        .inline-link {
+            color: #b56f2c;
+            background: #f9efdf;
+            padding: 0.15rem 0.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+
+        .inline-link:hover {
+            background: #dbac76;
+            color: #2b1c0c;
+            border-bottom-color: #a66628;
+        }
+
+        .button-link-card {
+            display: inline-block;
+            margin: 1.2rem 0 0.8rem;
+            background: #f1ddd0;
+            padding: 0.6rem 1.6rem 0.6rem 1.8rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            color: #3f2a16;
+            border: 1px solid #d8b48b;
+            transition: background 0.25s, transform 0.1s;
+            box-shadow: 0 2px 6px rgba(190, 130, 70, 0.15);
+        }
+
+        .button-link-card a {
+            color: #633f1e;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .button-link-card a:hover {
+            color: #2f1e0c;
+            text-decoration: underline wavy #bf823f 1px;
+            text-underline-offset: 4px;
+        }
+
+        .faq-mini {
+            margin-top: 2.8rem;
+            padding-top: 1.8rem;
+            border-top: 2px dotted #dbb58b;
+        }
+
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #6f4b28;
+            font-size: 1.02rem;
+            letter-spacing: -0.01em;
+        }
+
+        .faq-a {
+            color: #3b2c1d;
+            line-height: 1.6;
+            padding-left: 0.6rem;
+            border-left: 3px solid #ecc396;
+            padding-left: 1rem;
+        }
+
+        .visit-reminder {
+            margin-top: 2.2rem;
+            text-align: right;
+            color: #836a4b;
+            font-size: 0.95rem;
+            border-top: 1px solid #efdcc8;
+            padding-top: 1.2rem;
+            font-style: italic;
+        }
+
+        .seed-note {
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 1.8rem 1.2rem 2rem;
+                border-radius: 32px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+                padding-left: 0.8rem;
+                border-left-width: 5px;
+            }
+
+            .subhead {
+                padding-left: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .intro {
+                padding: 1rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            .highlight-quote {
+                padding: 1rem 1.2rem;
+            }
+
+            .button-link-card {
+                font-size: 0.95rem;
+                padding: 0.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>再次来到 · 记一个常驻的书签</h1>
+    <div class="subhead">收藏、回访、持续关注 —— 不只是习惯</div>
+
+    <div class="intro">
+        有些站点，不喧哗，却总能让人在需要时想起。<br>
+        下面这份记录，是整理给自己，也分享给同样留意<a href="https://asia-sportsbet.com" class="inline-link">买球站</a>的朋友。
+    </div>
+
+    <div class="article-body">
+        <p>
+            上一次打开这个页面是什么时候？可能是一周前，也可能是上个月。互联网上的地址常常变动，而真正值得记住的，反而不会轻易消失。<strong>「买球站」</strong>这个称呼，在不少讨论里反复出现，但真正能找到并稳定访问的人，并不多。
+        </p>
+        <p>
+            如果已经把它收藏进浏览器的书签栏，或者记在备忘录里，那么再次打开时，应该不会有陌生感。结构没有变得花哨，内容也保持一贯的克制。入口始终清晰，没有任何弹窗或冗余的引导。只需要一个动作：打开收藏夹，找到那个名字。
+        </p>
+
+        <div class="highlight-quote">
+            <strong>🔖 提示备忘</strong> —— 域名不变、界面干净、无强制跳转。<br>
+            如果这是你第一次看到这段文字，不妨先加书签。下一次再想起时，就不必重新搜索了。
+        </div>
+
+        <p>
+            持续关注一个平台，往往不是因为功能多炫，而是因为它的稳定和一致。从之前的访问体验来看，<a href="https://asia-sportsbet.com" class="inline-link">买球站</a> 在信息呈现上保持了相当克制的风格 —— 没有夸大的标语，没有闪烁的催促。对于只想安静浏览、自己判断的人来说，这种氛围是舒服的。
+        </p>
+        <p>
+            另外，页面加载速度一直维持在不错的水平，这在移动端尤其重要。即使信号一般，也不会出现长时间的白屏或布局错位。细节做得足够，也就不需要额外的说明。
+        </p>
+    </div>
+
+    <div class="button-link-card">
+        📂 收藏直达 · <a href="https://asia-sportsbet.com">买球站</a>
+    </div>
+
+    <!-- FAQ 摘要：简短，聚焦“再次访问”场景 -->
+    <div class="faq-mini">
+        <div class="faq-item">
+            <span class="faq-q">—— 页面变了怎么办？</span>
+            <span class="faq-a">核心域名和框架通常保持稳定。如果界面微调，功能逻辑一般不会大改。建议每两周回来看一眼。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">—— 是否需要注册或登录才能浏览？</span>
+            <span class="faq-a">当前版本的内容区域对访客完全开放。浏览不需要任何身份验证。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">—— 如何最快回到这里？</span>
+            <span class="faq-a">在浏览器书签栏新建文件夹，把 <a href="https://asia-sportsbet.com" style="color:#8f5f2e;text-decoration:underline dashed #dba15e;text-underline-offset:3px;">买球站</a> 添加进去。或者用手机浏览器“添加到主屏幕”。</span>
+        </div>
+    </div>
+
+    <div class="visit-reminder">
+        ✦ 下次再见 · 保持收藏的习惯 ✦
+    </div>
+</div>
+
+<!-- 创作种子仅用于变化，不显示 -->
+<div class="seed-note">f44035989859d56d</div>
+</body>
+</html>
